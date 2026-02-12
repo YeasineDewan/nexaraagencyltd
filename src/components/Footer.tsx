@@ -10,11 +10,13 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
           {/* Company Info */}
           <div>
-             <Link to="/" className="flex items-center gap-2 mb-8 group">
-              <div className="bg-primary rounded-lg p-1.5 group-hover:bg-primary-dark transition-colors">
-                 <span className="text-white font-bold text-xl">N</span>
-              </div>
-              <span className="font-extrabold text-2xl text-white tracking-tight">NEXARA<span className="text-primary">.</span></span>
+             <Link to="/" className="flex items-center gap-3 mb-8 group">
+              <img 
+                src="/assets/logo.png" 
+                alt="Nexara Agency Ltd" 
+                className="h-14 w-auto transition-transform duration-300 group-hover:scale-105"
+              />
+              <span className="font-extrabold text-2xl text-white tracking-tight">NEXARA <span className="text-primary font-bold text-lg">Agency Ltd.</span></span>
             </Link>
             <p className="text-gray-400 mb-8 leading-relaxed text-sm">
               One of the leading Digital Marketing agencies in Bangladesh. With our innovative strategies and results-oriented approach, we help businesses thrive in the digital world.

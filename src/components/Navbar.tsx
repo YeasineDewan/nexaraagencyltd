@@ -153,11 +153,13 @@ const Navbar = () => {
         <div className="flex justify-between h-20 items-center">
           {/* Logo */}
           <div className="flex items-center">
-            <Link to="/" className="flex-shrink-0 flex items-center gap-2 group">
-              <span className="font-black text-3xl text-primary tracking-tighter uppercase flex items-center gap-1">
-                <span className="bg-primary text-white px-2 py-0.5 rounded-sm mr-1">N</span>
-                NEXARA <span className="text-white text-lg font-bold">Agency Ltd.</span>
-              </span>
+            <Link to="/" className="flex-shrink-0 flex items-center gap-3 group">
+              <img 
+                src="/assets/logo.png" 
+                alt="Nexara Agency Ltd" 
+                className="h-14 w-auto transition-transform duration-300 group-hover:scale-105"
+              />
+              <span className="font-black text-2xl text-primary tracking-tighter uppercase hidden sm:flex items-center gap-2">NEXARA <span className="text-white text-lg font-bold">Agency Ltd.</span></span>
             </Link>
           </div>
           
@@ -470,9 +472,13 @@ const Navbar = () => {
             className="fixed inset-0 z-[150] lg:hidden bg-dark p-6 flex flex-col"
         >
           <div className="flex justify-between items-center mb-12">
-             <Link to="/" className="flex items-center gap-2" onClick={() => setIsOpen(false)}>
-                <div className="bg-primary rounded-lg p-1.5"><span className="text-white font-bold text-xl">N</span></div>
-                <span className="font-extrabold text-2xl text-white tracking-tight">NEXARA</span>
+             <Link to="/" className="flex items-center gap-3" onClick={() => setIsOpen(false)}>
+                <img 
+                  src="/assets/logo.png" 
+                  alt="Nexara Agency Ltd" 
+                  className="h-12 w-auto transition-transform duration-300"
+                />
+                <span className="font-extrabold text-2xl text-white tracking-tight hidden sm:flex items-center gap-2">NEXARA <span className="text-primary font-bold text-lg">Agency Ltd.</span></span>
              </Link>
              <button onClick={() => setIsOpen(false)} className="p-3 rounded-xl bg-white/5 text-primary">
                 <X className="h-6 w-6" />
