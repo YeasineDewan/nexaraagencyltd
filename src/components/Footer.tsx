@@ -12,7 +12,7 @@ const Footer = () => {
           <div>
              <Link to="/" className="flex items-center gap-3 mb-8 group">
               <img 
-                src="/assets/logo.png" 
+                src="/assets/logo.webp" 
                 alt="Nexara Agency Ltd" 
                 className="h-14 w-auto transition-transform duration-300 group-hover:scale-105"
               />
