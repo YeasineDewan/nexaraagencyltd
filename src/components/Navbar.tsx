@@ -155,7 +155,7 @@ const Navbar = () => {
           <div className="flex items-center">
             <Link to="/" className="flex-shrink-0 flex items-center gap-3 group">
               <img 
-                src="/assets/logo.ico" 
+                src="/assets/logo.webp" 
                 alt="Nexara Agency Ltd" 
                 className="h-14 w-auto transition-transform duration-300 group-hover:scale-105"
               />
