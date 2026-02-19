@@ -3,7 +3,6 @@ import Layout from '../components/Layout';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, Play, Code } from 'lucide-react';
 import { Button } from '../components/ui/Button';
-import ImageWithFallback from '../components/ui/ImageWithFallback';
 
 const Portfolio = () => {
   const [activeCategory, setActiveCategory] = useState('All');
@@ -71,7 +70,10 @@ const Portfolio = () => {
                             className="group bg-dark-lighter rounded-[3rem] overflow-hidden border border-white/5 relative"
                         >
                             <div className="aspect-[4/5] overflow-hidden relative">
-                                <ImageWithFallback src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" fallbackText={`${project.title} - ${project.client}`} />
+                                <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" onError={(e) => {
+                                  const target = e.target as HTMLImageElement;
+                                  target.style.display = 'none';
+                                }} />
                                 <div className="absolute inset-0 bg-gradient-to-t from-dark via-transparent to-transparent opacity-80 group-hover:opacity-100 transition-opacity"></div>
                                 
                                 {/* Hover Actions */}

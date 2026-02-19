@@ -5,7 +5,6 @@ import { motion } from 'framer-motion';
 import { Code, Smartphone, CheckCircle, Globe, TrendingUp, Users as UsersIcon, FileText, Star, ArrowRight } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import ConsultancyForm from '../components/ui/ConsultancyForm';
-import ImageWithFallback from '../components/ui/ImageWithFallback';
 
 const Home = () => {
   const services = [
@@ -89,11 +88,14 @@ const Home = () => {
             >
               <div className="relative z-10 rounded-[3.5rem] overflow-hidden border-2 border-primary/20 p-2 bg-dark-lighter shadow-2xl group">
                  <div className="rounded-[3rem] overflow-hidden aspect-[4/5] relative">
-                    <ImageWithFallback 
+                    <img 
                         src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" 
                         alt="NEXARA Excellence" 
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
-                        fallbackText="NEXARA Excellence"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                        }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
                     <div className="absolute bottom-10 left-10">
@@ -127,12 +129,15 @@ const Home = () => {
         </div>
         <div className="flex gap-20 items-center animate-infinite-scroll">
             {[...clients, ...clients].map((client, i) => (
-                    <ImageWithFallback 
+                    <img 
                         key={i} 
                         src={client} 
                         alt="Client" 
                         className="h-10 grayscale opacity-40 hover:opacity-100 hover:grayscale-0 transition-all duration-500 cursor-pointer"
-                        fallbackText="Client Logo"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                        }}
                     />
             ))}
         </div>
@@ -279,36 +284,48 @@ const Home = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                 <div className="md:col-span-2 md:row-span-2 rounded-[3rem] overflow-hidden group border border-white/10 relative">
-                    <ImageWithFallback 
+                    <img 
                         src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
                         alt="Moment 1" 
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
-                        fallbackText="Project Moment 1"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                        }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 </div>
                 <div className="rounded-[2.5rem] overflow-hidden group border border-white/10 aspect-square md:aspect-auto">
-                    <ImageWithFallback 
+                    <img 
                         src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
                         alt="Moment 2" 
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
-                        fallbackText="Project Moment 2"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                        }}
                     />
                 </div>
                 <div className="rounded-[2.5rem] overflow-hidden group border border-white/10 aspect-square md:aspect-auto">
-                    <ImageWithFallback 
+                    <img 
                         src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
                         alt="Moment 3" 
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
-                        fallbackText="Project Moment 3"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                        }}
                     />
                 </div>
                  <div className="md:col-span-2 rounded-[2.5rem] overflow-hidden group border border-white/10 h-80 md:h-64 relative">
-                    <ImageWithFallback 
+                    <img 
                         src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" 
                         alt="Moment 4" 
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
-                        fallbackText="Project Moment 4"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                        }}
                     />
                 </div>
             </div>

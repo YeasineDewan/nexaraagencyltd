@@ -33,24 +33,24 @@ import VideoProduction from './pages/services/VideoProduction';
 
 // Sub-service pages
 import VSMM from './pages/services/subservices/VSMM';
-import SEONext from './pages/services/subservices/VSMM'; // Reuse VSMM for now
-import SocialMedia from './pages/services/subservices/VSMM';
-import PPC from './pages/services/subservices/VSMM';
+import SEONext from './pages/services/subservices/SEONext';
+import SocialMedia from './pages/services/subservices/SocialMedia';
+import PPC from './pages/services/subservices/PPC';
 import LandingPage from './pages/services/subservices/LandingPage';
 import Ecommerce from './pages/services/subservices/Ecommerce';
 import PortfolioWebsite from './pages/services/subservices/PortfolioWebsite';
 import NewsPortal from './pages/services/subservices/NewsPortal';
-import Corporate from './pages/services/subservices/LandingPage';
-import WebApp from './pages/services/subservices/Ecommerce';
-import GoPack from './pages/services/subservices/VSMM';
-import BrandIdentity from './pages/services/subservices/VSMM';
-import GraphicDesign from './pages/services/subservices/VSMM';
-import ContentCreation from './pages/services/subservices/VSMM';
+import Corporate from './pages/services/subservices/Corporate';
+import WebApp from './pages/services/subservices/WebApp';
+import GoPack from './pages/services/subservices/GoPack';
+import BrandIdentity from './pages/services/subservices/BrandIdentity';
+import GraphicDesign from './pages/services/subservices/GraphicDesign';
+import ContentCreation from './pages/services/subservices/ContentCreation';
 import TVCOVC from './pages/services/subservices/TVCOVC';
-import MicroOVC from './pages/services/subservices/TVCOVC';
-import ExplainerVideo from './pages/services/subservices/TVCOVC';
-import AnimationMotion from './pages/services/subservices/TVCOVC';
-import CommercialPhotoshoot from './pages/services/subservices/TVCOVC';
+import MicroOVC from './pages/services/subservices/MicroOVC';
+import ExplainerVideo from './pages/services/subservices/ExplainerVideo';
+import AnimationMotion from './pages/services/subservices/AnimationMotion';
+import CommercialPhotoshoot from './pages/services/subservices/CommercialPhotoshoot';
 
 const ScrollToTop = () => {
   const location = useLocation();
