@@ -1,28 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '../components/Layout';
 import { Link } from 'react-router-dom';
-import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'framer-motion';
-import { Code, Smartphone, CheckCircle, Globe, TrendingUp, Users as UsersIcon, FileText, Star, ArrowRight, Sparkles, Zap, Target, Eye } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Code, Smartphone, Globe, TrendingUp, Users as UsersIcon, FileText, ArrowRight, Sparkles, Zap, Target, Eye } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import ConsultancyForm from '../components/ui/ConsultancyForm';
 
 const Home = () => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const { scrollY } = useScroll();
   
   useEffect(() => {
     setIsLoaded(true);
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
-  
-  const parallaxY = useTransform(scrollY, [0, 1000], [0, -50]);
-  const backgroundX = useTransform(mousePosition.x, [0, typeof window !== 'undefined' ? window.innerWidth : 1920], [0, 50]);
-  const backgroundY = useTransform(mousePosition.y, [0, typeof window !== 'undefined' ? window.innerHeight : 1080], [0, 50]);
 
   const services = [
     { title: 'Digital Marketing', description: 'Elevate your online presence with our strategic digital marketing solutions.', icon: <TrendingUp />, color: 'text-primary' },
@@ -42,12 +31,6 @@ const Home = () => {
     'https://via.placeholder.com/150x50?text=Aarong'
   ];
 
-  const reviews = [
-    { name: 'Roxane Davis', role: 'CMO, Lucia Belia', content: 'Working with NEXARA has been a game-changer for our business. Their team\'s dedication, expertise, and personalized solutions have catapulted our success.', rating: 5 },
-    { name: 'John Smith', role: 'CEO, TechFlow', content: 'The ROI we saw after their SEO campaign was unprecedented. Highly recommended for any serious business looking to scale.', rating: 5 },
-    { name: 'Sarah Ahmed', role: 'Founder, EcoCraft', content: 'Their creative approach to our brand video was exactly what we needed to stand out in a crowded market.', rating: 4 }
-  ];
-
   return (
     <Layout>
       {/* Hero Section */}
@@ -63,16 +46,16 @@ const Home = () => {
           <motion.div
             className="absolute w-[800px] h-[800px] rounded-full bg-gradient-to-r from-primary/20 via-primary/10 to-transparent blur-[100px]"
             animate={{
-              x: backgroundX - 400,
-              y: backgroundY - 400,
+              x: 50,
+              y: 50,
             }}
             transition={{ type: "spring", stiffness: 100, damping: 30 }}
           />
           <motion.div
             className="absolute w-[600px] h-[600px] rounded-full bg-gradient-to-br from-purple-500/10 via-pink-500/10 to-transparent blur-[80px]"
             animate={{
-              x: -backgroundX + 300,
-              y: -backgroundY + 300,
+              x: 300,
+              y: 300,
             }}
             transition={{ type: "spring", stiffness: 80, damping: 25 }}
             style={{ animationDelay: '0.5s' }}
@@ -453,7 +436,7 @@ const Home = () => {
                       whileHover={{ scale: 1.02, x: 5 }}
                     >
                       <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-4">
-                        <benefit.icon className="text-primary text-2xl" />
+                        {React.cloneElement(benefit.icon as any, { size: 24, className: "text-primary text-2xl" })}
                       </div>
                       <div className="flex-1">
                         <h4 className="text-xl font-bold text-white mb-2">{benefit.title}</h4>
