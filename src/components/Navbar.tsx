@@ -148,41 +148,40 @@ const Navbar = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <nav className="bg-[#0a0a0a] sticky top-0 z-[100] border-b-2 border-primary/20 transition-all duration-300 shadow-[0_4px_30px_rgba(0,0,0,0.5)] lg:rounded-full lg:mx-4 lg:mt-2">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-20 items-center">
+    <nav className="bg-[#0a0a0a] sticky top-0 z-[100] border-b-2 border-primary/20 transition-all duration-300 shadow-[0_4px_30px_rgba(0,0,0,0.5)] lg:rounded-2xl lg:mx-4 lg:mt-3 lg:mb-2 lg:px-6">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-4">
+        <div className="flex justify-between h-14 sm:h-16 lg:h-20 items-center gap-4">
           {/* Logo */}
-          <div className="flex items-center">
+          <div className="flex items-center min-w-0">
             <Link to="/" className="flex-shrink-0 flex items-center gap-2 sm:gap-3 group">
               <img 
                 src="/logo.png" 
                 alt="Nexara Agency Ltd" 
-                className="h-10 sm:h-12 lg:h-14 w-auto transition-transform duration-300 group-hover:scale-105"
+                className="h-8 sm:h-10 lg:h-12 w-auto transition-transform duration-300 group-hover:scale-105"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
                   target.style.display = 'none';
                   target.nextElementSibling?.classList.remove('hidden');
                 }}
               />
-              <div className="hidden text-primary font-black text-xl sm:text-2xl tracking-tighter uppercase">NEXARA</div>
-              <span className="font-black text-xl sm:text-2xl text-primary tracking-tighter uppercase hidden sm:flex items-center gap-1 sm:gap-2">
-                NEXARA <span className="text-white text-sm sm:text-lg font-bold hidden md:inline">Agency Ltd.</span>
+              <span className="font-black text-lg sm:text-xl lg:text-2xl text-primary tracking-tight uppercase hidden sm:inline truncate">
+                NEXARA <span className="text-white text-sm lg:text-base font-bold hidden md:inline">Agency Ltd.</span>
               </span>
             </Link>
           </div>
           
           {/* Desktop Menu */}
-          <div className="hidden lg:flex lg:items-center lg:space-x-1">
+          <div className="hidden lg:flex lg:items-center lg:gap-2">
             {navLinks.map((link) => (
               <div 
                 key={link.name} 
-                className="relative px-3"
+                className="relative"
                 onMouseEnter={link.hasSubMenu ? handleServicesMouseEnter : undefined}
                 onMouseLeave={link.hasSubMenu ? handleServicesMouseLeave : undefined}
               >
                 <Link
                   to={link.path}
-                  className={`text-sm font-bold transition-all duration-300 py-2 px-3 rounded-lg flex items-center gap-1.5 ${
+                  className={`text-sm font-bold transition-all duration-300 py-2 px-3.5 rounded-lg flex items-center gap-1.5 ${
                     isActive(link.path) ? 'text-primary bg-primary/5' : 'text-gray-300 hover:text-white hover:bg-white/5'
                   }`}
                 >
@@ -364,11 +363,11 @@ const Navbar = () => {
           </div>
 
           {/* Right Side Actions */}
-          <div className="hidden lg:flex lg:items-center lg:space-x-6">
-            <div className="h-8 w-[1px] bg-white/10"></div>
+          <div className="hidden lg:flex lg:items-center lg:gap-4 lg:pl-4">
+            <div className="h-6 w-px bg-white/10 flex-shrink-0"></div>
             
             {user ? (
-              <div className="flex items-center gap-6">
+              <div className="flex items-center gap-3 lg:gap-4">
                 <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-primary font-black">
                         {user.name.charAt(0)}
@@ -391,7 +390,7 @@ const Navbar = () => {
                 </button>
               </div>
             ) : (
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3 lg:gap-4">
                  <Link to="/contact">
                     <button className="text-sm font-bold text-gray-400 hover:text-white transition-colors">GET IN TOUCH</button>
                  </Link>
@@ -477,85 +476,59 @@ const Navbar = () => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed inset-0 z-[150] lg:hidden bg-dark p-6 flex flex-col"
+            className="fixed inset-0 z-[150] lg:hidden bg-dark flex flex-col overflow-hidden"
         >
-          <div className="flex justify-between items-center mb-12">
-             <Link to="/" className="flex items-center gap-3" onClick={() => setIsOpen(false)}>
+          <div className="flex-shrink-0 flex justify-between items-center p-4 sm:p-6 py-4 min-h-[60px] border-b border-white/5">
+             <Link to="/" className="flex items-center gap-2 sm:gap-3 min-w-0" onClick={() => setIsOpen(false)}>
                 <img 
                   src="/logo.png" 
                   alt="Nexara Agency Ltd" 
-                  className="h-12 w-auto transition-transform duration-300"
+                  className="h-8 sm:h-10 w-auto flex-shrink-0"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
                     target.style.display = 'none';
                     target.nextElementSibling?.classList.remove('hidden');
                   }}
                 />
-                <div className="hidden text-primary font-extrabold text-2xl tracking-tight">NEXARA</div>
-                <span className="font-extrabold text-2xl text-white tracking-tight hidden sm:flex items-center gap-2">NEXARA <span className="text-primary font-bold text-lg">Agency Ltd.</span></span>
+                <span className="font-extrabold text-lg sm:text-xl text-white tracking-tight truncate">NEXARA <span className="text-primary font-bold">Agency</span></span>
              </Link>
-             <button onClick={() => setIsOpen(false)} className="p-3 rounded-xl bg-white/5 text-primary">
-                <X className="h-6 w-6" />
+             <button onClick={() => setIsOpen(false)} className="p-2 sm:p-3 rounded-xl bg-white/5 text-primary flex-shrink-0" aria-label="Close menu">
+                <X className="h-5 w-5 sm:h-6 sm:w-6" />
              </button>
           </div>
 
-          <div className="space-y-4 mb-12">
-            {navLinks.map((link) => (
-              <div key={link.name}>
-                {link.hasSubMenu ? (
-                  <div>
-                    <div className="text-3xl font-black uppercase tracking-tighter text-gray-700 mb-4">
-                      {link.name}
-                    </div>
-                    <div className="ml-6 space-y-3">
-                      {Object.entries(servicesMenu).map(([category, data]) => (
-                        <div key={category} className="mb-4">
-                          <div className="text-xl font-bold text-white mb-2">{category}</div>
-                          <div className="ml-4 space-y-2">
-                            {data.items.map((subItem: ServiceItem) => (
-                              <Link
-                                key={subItem.path}
-                                to={subItem.path}
-                                className="block text-lg text-gray-400 hover:text-primary transition-colors"
-                                onClick={() => setIsOpen(false)}
-                              >
-                                {subItem.name}
-                              </Link>
-                            ))}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                ) : (
+          <div className="flex-1 overflow-y-auto overscroll-contain min-h-0 py-4 px-4 sm:px-6">
+            <div className="space-y-3 sm:space-y-4 pb-6">
+              {navLinks.map((link) => (
+                <div key={link.name}>
                   <Link
                     to={link.path}
-                    className={`block text-3xl font-black uppercase tracking-tighter ${
-                        isActive(link.path) ? 'text-primary' : 'text-gray-700 hover:text-white'
+                    className={`block py-3 text-base sm:text-lg font-bold uppercase tracking-tight ${
+                      isActive(link.path) ? 'text-primary' : 'text-gray-300 hover:text-white'
                     }`}
                     onClick={() => setIsOpen(false)}
                   >
                     {link.name}
                   </Link>
-                )}
-              </div>
-            ))}
+                </div>
+              ))}
+            </div>
           </div>
 
-          <div className="mt-auto space-y-4">
+          <div className="flex-shrink-0 p-4 sm:p-6 pt-4 pb-6 border-t border-white/5 space-y-3 bg-dark">
             {user ? (
-               <div className="space-y-4">
-                  <div className="p-6 bg-dark-lighter rounded-[2rem] border border-white/5 flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-2xl bg-primary flex items-center justify-center text-white font-black text-xl">
+               <div className="space-y-3">
+                  <div className="p-4 sm:p-5 bg-dark-lighter rounded-2xl border border-white/5 flex items-center gap-3">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-primary flex items-center justify-center text-white font-black text-lg flex-shrink-0">
                           {user.name.charAt(0)}
                       </div>
-                      <div>
-                          <p className="text-white font-bold">{user.name}</p>
-                          <p className="text-xs text-gray-500 uppercase tracking-widest">{user.role}</p>
+                      <div className="min-w-0">
+                          <p className="text-white font-bold text-sm sm:text-base truncate">{user.name}</p>
+                          <p className="text-[10px] sm:text-xs text-gray-500 uppercase tracking-wider">{user.role}</p>
                       </div>
                   </div>
                   <Button
-                    className="w-full h-16 rounded-[2rem]"
+                    className="w-full h-12 sm:h-14 rounded-2xl text-sm font-bold"
                     onClick={() => {
                       const dashboardPath =
                         user.role === 'admin'
@@ -569,15 +542,15 @@ const Navbar = () => {
                   >
                     DASHBOARD
                   </Button>
-                  <Button variant="secondary" className="w-full h-16 rounded-[2rem]" onClick={handleLogout}>LOGOUT</Button>
+                  <Button variant="secondary" className="w-full h-12 sm:h-14 rounded-2xl text-sm font-bold" onClick={handleLogout}>LOGOUT</Button>
                </div>
             ) : (
-               <div className="space-y-4">
+               <div className="space-y-3">
                   <Link to="/login" className="block w-full" onClick={() => setIsOpen(false)}>
-                    <Button variant="secondary" className="w-full h-16 rounded-[2rem] font-black text-lg">LOGIN</Button>
+                    <Button variant="secondary" className="w-full h-12 sm:h-14 rounded-2xl font-bold text-sm">LOGIN</Button>
                   </Link>
                   <Link to="/register" className="block w-full" onClick={() => setIsOpen(false)}>
-                    <Button className="w-full h-16 rounded-[2rem] font-black text-lg">GET STARTED</Button>
+                    <Button className="w-full h-12 sm:h-14 rounded-2xl font-bold text-sm">GET STARTED</Button>
                   </Link>
                </div>
             )}

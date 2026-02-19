@@ -24,9 +24,9 @@ const ServicesWithPricing = () => {
   return (
     <Layout>
       {/* Header */}
-      <section className="relative py-32 bg-dark overflow-hidden text-center border-b border-white/5">
+      <section className="relative py-20 sm:py-32 bg-dark overflow-hidden text-center border-b border-white/5">
         <div className="max-w-4xl mx-auto px-4 relative z-10">
-           <h1 className="text-6xl font-black text-white mb-8">
+           <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white mb-6 sm:mb-8">
              From Strategy To Screen: <br/>
              <span className="text-primary">NEXARA</span> - Fueling Your Digital Evolution With Excellence.
            </h1>
@@ -47,7 +47,7 @@ const ServicesWithPricing = () => {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                 {allServices.map((service, i) => (
                     <motion.div 
                         key={i}
@@ -77,7 +77,7 @@ const ServicesWithPricing = () => {
                 <h3 className="text-5xl font-bold text-white mb-6">Choose Your Growth Plan</h3>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                 {[
                     { name: 'Startup', price: '999', features: ['Core Features', 'Single Channel', 'Basic Support', 'Standard Reporting'] },
                     { name: 'Professional', price: '2,499', features: ['Full Strategy', 'Multi-channel', 'Priority Support', 'Advanced Analytics'], popular: true },

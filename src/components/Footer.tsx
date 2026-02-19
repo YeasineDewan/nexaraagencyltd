@@ -3,9 +3,9 @@ import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin } from 'luc
 
 const Footer = () => {
   return (
-    <footer className="bg-dark text-white pt-24 pb-12 border-t border-white/5">
+    <footer className="bg-dark text-white pt-16 sm:pt-24 pb-8 sm:pb-12 border-t border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 sm:gap-16 mb-16 sm:mb-20">
           {/* Company Info */}
           <div>
              <Link to="/" className="flex items-center gap-3 mb-8 group">

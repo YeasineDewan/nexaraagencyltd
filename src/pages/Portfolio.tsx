@@ -31,7 +31,7 @@ const Portfolio = () => {
             <motion.h1 
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-7xl md:text-9xl font-black text-white mb-10 uppercase tracking-tighter"
+                className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black text-white mb-6 sm:mb-10 uppercase tracking-tighter"
             >
                 Our <span className="text-primary">Mastery.</span>
             </motion.h1>
@@ -54,9 +54,9 @@ const Portfolio = () => {
       </section>
 
       {/* Portfolio Grid */}
-      <section className="py-32 bg-dark">
+      <section className="py-20 sm:py-32 bg-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                 <AnimatePresence mode="popLayout">
                     {filteredProjects.map((project) => (
                         <motion.div
@@ -113,7 +113,7 @@ const Portfolio = () => {
       {/* Trust Metrics Section */}
       <section className="py-32 bg-dark-lighter border-y border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-             <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+             <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12 text-center">
                 {[
                     { label: 'Successful Launches', value: '450+' },
                     { label: 'Creative Awards', value: '25+' },
@@ -139,7 +139,7 @@ const Portfolio = () => {
                     <p className="text-gray-500 text-lg leading-relaxed mb-10">
                         We don't just build for others; we engineer our own high-performance platforms. From specialized CRM solutions to advanced POS systems, we define the standard of dynamic tech works.
                     </p>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         {['CRM', 'LMS', 'POS', 'HRM'].map(app => (
                             <div key={app} className="p-6 bg-dark-lighter border border-white/5 rounded-2xl flex items-center justify-between group hover:border-primary/50 transition-all">
                                 <span className="text-white font-bold">{app} Solution</span>

@@ -22,14 +22,14 @@ const Contact = () => {
   return (
     <Layout>
       {/* Premium Hero */}
-      <section className="relative py-40 bg-dark overflow-hidden border-b border-white/5">
+      <section className="relative py-24 sm:py-40 bg-dark overflow-hidden border-b border-white/5">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2"></div>
         <div className="max-w-7xl mx-auto px-4 relative z-10">
            <div className="max-w-3xl">
                 <motion.h1 
                     initial={{ opacity: 0, x: -30 }}
                     animate={{ opacity: 1, x: 0 }}
-                    className="text-7xl md:text-9xl font-black text-white mb-10 uppercase tracking-tighter leading-[0.9]"
+                    className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black text-white mb-8 sm:mb-10 uppercase tracking-tighter leading-[0.9]"
                 >
                     Let's <span className="text-primary">Connect.</span>
                 </motion.h1>
@@ -42,7 +42,7 @@ const Contact = () => {
 
       <section className="py-32 bg-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-20">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 sm:gap-20">
             
             {/* Contact Details Column */}
             <div className="lg:col-span-4 space-y-12">
@@ -99,11 +99,11 @@ const Contact = () => {
                 
                 <h3 className="text-4xl font-black text-white mb-12 uppercase tracking-tighter">Transmission Portal</h3>
                 <form className="space-y-10">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-10">
                         <Input label="Identity / Name" placeholder="Full Name" className="bg-dark border-white/10 text-white h-16 rounded-2xl px-6" required />
                         <Input label="Corporate Email" type="email" placeholder="email@company.com" className="bg-dark border-white/10 text-white h-16 rounded-2xl px-6" required />
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-10">
                         <Input label="Project Classification" placeholder="Web / Mobile / Marketing" className="bg-dark border-white/10 text-white h-16 rounded-2xl px-6" />
                         <Input label="Allocated Budget" placeholder="$5k - $10k" className="bg-dark border-white/10 text-white h-16 rounded-2xl px-6" />
                     </div>

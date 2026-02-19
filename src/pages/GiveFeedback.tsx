@@ -389,7 +389,7 @@ const GiveFeedback = () => {
       {/* Stats Section */}
       <section className="py-20 bg-dark-lighter">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
               { icon: TrendingUp, label: "Client Growth", value: "150%", desc: "Year over year" },
               { icon: Award, label: "Awards Won", value: "25+", desc: "Industry recognition" },

@@ -167,7 +167,7 @@ const InvoiceSettingsPage: React.FC = () => {
               <div className="bg-dark-lighter border border-white/10 rounded-3xl p-8">
                 <h2 className="text-2xl font-bold text-white mb-6">Basic Invoice Settings</h2>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
                   <div>
                     <label className="block text-sm font-bold text-gray-300 mb-3 uppercase tracking-wider">Invoice Prefix</label>
                     <input
@@ -236,7 +236,7 @@ const InvoiceSettingsPage: React.FC = () => {
                   </div>
 
                   {settings.taxSettings.enabled && (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
                       <div>
                         <label className="block text-sm font-bold text-gray-300 mb-3 uppercase tracking-wider">Tax Name</label>
                         <input
@@ -383,7 +383,7 @@ const InvoiceSettingsPage: React.FC = () => {
                   </Button>
                 </div>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                   {[
                     {
                       id: 'template-1',

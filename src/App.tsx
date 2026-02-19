@@ -24,6 +24,8 @@ import ArtistModelList from './pages/ArtistModelList';
 import AdminDashboard from './pages/admin/Dashboard';
 import ClientDashboard from './pages/client/Dashboard';
 import EmployeeDashboard from './pages/employee/Dashboard';
+import AdminInvoiceManagement from './pages/admin/InvoiceManagement';
+import ClientInvoicePortal from './pages/client/InvoicePortal';
 
 // Service category pages
 import DigitalMarketing from './pages/services/DigitalMarketing';
@@ -127,7 +129,9 @@ export function App() {
           
           {/* Protected Routes - Authentication checks are inside the components for simplicity in this demo */}
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/admin/invoices" element={<AdminInvoiceManagement />} />
           <Route path="/client/dashboard" element={<ClientDashboard />} />
+          <Route path="/client/invoices" element={<ClientInvoicePortal />} />
           <Route path="/employee/dashboard" element={<EmployeeDashboard />} />
         </Routes>
         <Analytics />

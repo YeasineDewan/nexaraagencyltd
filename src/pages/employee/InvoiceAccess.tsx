@@ -236,7 +236,7 @@ const EmployeeInvoiceAccess: React.FC = () => {
             </div>
 
             {/* Client & Company Info */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-8">
               <div>
                 <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
                   <Building size={20} />
@@ -401,7 +401,7 @@ const EmployeeInvoiceAccess: React.FC = () => {
         </motion.div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
           {[
             { 
               label: 'Total Invoices', 
@@ -447,7 +447,7 @@ const EmployeeInvoiceAccess: React.FC = () => {
         </div>
 
         {/* Invoices Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {filteredInvoices.map((invoice) => (
             <motion.div
               key={invoice.id}

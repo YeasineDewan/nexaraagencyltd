@@ -17,12 +17,16 @@ interface CreateInvoiceModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSave: (invoice: Partial<Invoice>) => void;
+  initialInvoice?: Invoice;
+  mode?: 'create' | 'edit';
 }
 
 const CreateInvoiceModal: React.FC<CreateInvoiceModalProps> = ({
   isOpen,
   onClose,
-  onSave
+  onSave,
+  initialInvoice,
+  mode = 'create'
 }) => {
   const [activeTab, setActiveTab] = useState<'basic' | 'items' | 'settings'>('basic');
   const [formData, setFormData] = useState<Partial<Invoice>>({
@@ -35,10 +39,38 @@ const CreateInvoiceModal: React.FC<CreateInvoiceModalProps> = ({
     subtotal: 0,
     taxAmount: 0,
     totalAmount: 0,
-    terms: 'Payment due within 30 days. Late payments subject to fees.',
-    notes: 'Thank you for your business!',
+    terms: 'Payment due within 30 days. Late payments subject to 2% monthly fee. All services are subject to our terms and conditions.',
+    notes: 'Thank you for choosing NEXARA Agency! We appreciate your business and look forward to continuing our partnership.',
     sharedWith: []
   });
+
+  useEffect(() => {
+    if (isOpen && initialInvoice) {
+      setFormData({
+        ...initialInvoice,
+        clientInfo: initialInvoice.clientInfo ? { ...initialInvoice.clientInfo } : undefined
+      });
+      setSelectedClient(initialInvoice.clientId || '');
+      setSelectedTemplate('');
+    } else if (isOpen && !initialInvoice) {
+      setFormData({
+        invoiceNumber: `INV-${new Date().getFullYear()}-${String(Math.floor(Math.random() * 1000)).padStart(3, '0')}`,
+        issueDate: new Date().toISOString().split('T')[0],
+        dueDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+        currency: 'BDT',
+        status: 'draft',
+        items: [],
+        subtotal: 0,
+        taxAmount: 0,
+        totalAmount: 0,
+        terms: 'Payment due within 30 days. Late payments subject to fees.',
+        notes: 'Thank you for your business!',
+        sharedWith: []
+      });
+      setSelectedClient('');
+      setSelectedTemplate('');
+    }
+  }, [isOpen, initialInvoice]);
 
   const [selectedClient, setSelectedClient] = useState('');
   const [selectedTemplate, setSelectedTemplate] = useState('');
@@ -83,7 +115,7 @@ const CreateInvoiceModal: React.FC<CreateInvoiceModalProps> = ({
   ];
 
   useEffect(() => {
-    if (selectedClient) {
+    if (selectedClient && !initialInvoice) {
       const client = mockClients.find(c => c.id === selectedClient);
       if (client) {
         setFormData(prev => ({
@@ -99,7 +131,7 @@ const CreateInvoiceModal: React.FC<CreateInvoiceModalProps> = ({
         }));
       }
     }
-  }, [selectedClient]);
+  }, [selectedClient, initialInvoice]);
 
   useEffect(() => {
     if (selectedTemplate) {
@@ -179,9 +211,10 @@ const CreateInvoiceModal: React.FC<CreateInvoiceModalProps> = ({
     if (formData.clientId && formData.items && formData.items.length > 0) {
       onSave({
         ...formData,
-        createdAt: new Date().toISOString(),
+        id: formData.id || `inv-${Date.now()}`,
+        createdAt: formData.createdAt || new Date().toISOString(),
         updatedAt: new Date().toISOString(),
-        createdBy: 'current-user'
+        createdBy: formData.createdBy || 'current-user'
       });
       onClose();
     }
@@ -200,8 +233,8 @@ const CreateInvoiceModal: React.FC<CreateInvoiceModalProps> = ({
         {/* Header */}
         <div className="flex justify-between items-center p-8 border-b border-white/10">
           <div>
-            <h2 className="text-3xl font-black text-white mb-2">Create New Invoice</h2>
-            <p className="text-gray-400">Generate professional invoices for your clients</p>
+            <h2 className="text-3xl font-black text-white mb-2">{mode === 'edit' ? 'Edit Invoice' : 'Create New Invoice'}</h2>
+            <p className="text-gray-400">{mode === 'edit' ? 'Update invoice details' : 'Generate professional invoices for your clients'}</p>
           </div>
           <button
             onClick={onClose}
@@ -563,7 +596,7 @@ const CreateInvoiceModal: React.FC<CreateInvoiceModalProps> = ({
               className="flex items-center gap-2"
             >
               <Save size={18} />
-              Create Invoice
+              {mode === 'edit' ? 'Save Changes' : 'Create Invoice'}
             </Button>
           </div>
         </div>

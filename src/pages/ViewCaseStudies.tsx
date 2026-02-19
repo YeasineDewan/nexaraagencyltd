@@ -128,7 +128,7 @@ const ViewCaseStudies = () => {
             className="text-center"
           >
             <span className="text-xs font-bold text-primary uppercase tracking-[0.3em] mb-6 block">Success Stories</span>
-            <h1 className="text-5xl md:text-7xl font-black text-white mb-8 leading-[1.1]">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-black text-white mb-6 sm:mb-8 leading-[1.1]">
               Our <span className="text-primary">Case Studies</span>
             </h1>
             <p className="text-gray-400 text-lg max-w-3xl mx-auto leading-relaxed">
@@ -175,7 +175,7 @@ const ViewCaseStudies = () => {
       {/* Case Studies Grid */}
       <section className="py-20 bg-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-12">
             {filteredCaseStudies.map((study, index) => (
               <motion.div
                 key={study.id}
@@ -210,7 +210,7 @@ const ViewCaseStudies = () => {
                   </p>
 
                   {/* Results */}
-                  <div className="grid grid-cols-3 gap-4 mb-8">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6 sm:mb-8">
                     {study.results.map((result, i) => (
                       <div key={i} className="text-center">
                         <result.icon className="h-6 w-6 text-primary mx-auto mb-2" />

@@ -36,13 +36,13 @@ const About = () => {
            <motion.h1 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-7xl md:text-9xl font-black text-white mb-8 uppercase tracking-tighter"
+                className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black text-white mb-6 sm:mb-8 uppercase tracking-tighter"
             >
                 About <span className="text-primary">Nexara</span>
             </motion.h1>
            <p className="text-gray-500 text-sm font-black uppercase tracking-[0.4em] mb-12">Driven by results • Inspired by innovation</p>
            
-           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto border-t border-white/5 pt-12">
+           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 max-w-4xl mx-auto border-t border-white/5 pt-8 sm:pt-12">
                 {stats.map((stat, i) => (
                     <div key={i}>
                         <div className="text-4xl font-black text-white mb-1">{stat.value}</div>
@@ -54,7 +54,7 @@ const About = () => {
       </section>
 
       {/* Our Story & Philosophy */}
-      <section className="py-32 bg-dark border-t border-white/5">
+      <section className="py-20 sm:py-32 bg-dark border-t border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="lg:grid lg:grid-cols-2 lg:gap-32 items-center">
                 <motion.div
@@ -96,14 +96,14 @@ const About = () => {
       </section>
 
       {/* Core Values */}
-      <section className="py-32 bg-dark-lighter border-y border-white/5">
+      <section className="py-20 sm:py-32 bg-dark-lighter border-y border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-24">
                 <h2 className="text-primary font-black uppercase tracking-[0.2em] text-xs mb-6">Our DNA</h2>
                 <h3 className="text-5xl md:text-6xl font-black text-white">The NEXARA Philosophy</h3>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
                 {values.map((val, i) => (
                     <div key={i} className="bg-dark p-10 rounded-[2.5rem] border border-white/5 hover:border-primary/30 transition-all group">
                         <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-8 group-hover:bg-primary group-hover:text-white transition-all duration-500">
@@ -118,7 +118,7 @@ const About = () => {
       </section>
 
       {/* Team Showcase */}
-      <section className="py-32 bg-dark">
+      <section className="py-20 sm:py-32 bg-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
              <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-10">
                 <div className="max-w-2xl">
@@ -130,7 +130,7 @@ const About = () => {
                 </Link>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
                 {team.map((member, i) => (
                     <motion.div 
                         key={i} 
@@ -152,7 +152,7 @@ const About = () => {
       </section>
 
       {/* Missions & Vision Grid */}
-      <section className="py-32 bg-dark-lighter">
+      <section className="py-20 sm:py-32 bg-dark-lighter">
          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <div className="bg-dark p-16 rounded-[4rem] border border-white/5 relative overflow-hidden group">

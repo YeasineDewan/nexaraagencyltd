@@ -50,7 +50,7 @@ const DigitalMarketing = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 gap-8 mb-20">
             {services.map((service, i) => (
               <motion.div
                 key={service.path}

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
   FileText, 
@@ -18,6 +19,7 @@ import {
 } from 'lucide-react';
 import { Button } from '../../components/ui/Button';
 import { Invoice } from '../../types/invoice';
+import Layout from '../../components/Layout';
 
 // Mock data - replace with actual API calls
 const mockInvoices: Invoice[] = [
@@ -157,8 +159,232 @@ const ClientInvoicePortal: React.FC = () => {
     }
   };
 
-  const handleDownloadInvoice = (invoiceId: string) => {
-    console.log('Downloading invoice:', invoiceId);
+  const handleDownloadInvoice = (invoice: Invoice) => {
+    const printWindow = window.open('', '_blank');
+    if (!printWindow) return;
+    
+    printWindow.document.write(`
+      <!DOCTYPE html><html><head><title>Invoice ${invoice.invoiceNumber}</title><style>
+        body { font-family: system-ui, sans-serif; margin: 0; padding: 32px; background: white; color: black; }
+        .invoice-container { max-width: 800px; margin: 0 auto; }
+        .header { border-bottom: 4px solid #111827; padding-bottom: 24px; margin-bottom: 32px; }
+        .logo-section { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px; }
+        .logo { display: flex; align-items: center; gap: 16px; }
+        .logo-box { width: 64px; height: 64px; background: #111827; border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+        .logo-text { color: white; font-weight: bold; font-size: 20px; }
+        .company-info h2 { margin: 0 0 4px 0; font-size: 24px; font-weight: 900; color: #111827; }
+        .company-info p { margin: 0; font-size: 14px; color: #6b7280; }
+        .invoice-badge { background: #dc2626; color: white; padding: 12px 24px; border-radius: 8px; display: inline-block; text-align: right; }
+        .invoice-badge .label { font-size: 12px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+        .invoice-badge .number { font-size: 20px; font-weight: 900; }
+        .contact-info { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; font-size: 14px; color: #6b7280; }
+        .contact-info div p:first-child { font-weight: 600; color: #1f2937; margin-bottom: 4px; }
+        .sections { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-bottom: 32px; }
+        .section-box { background: #f9fafb; padding: 24px; border-radius: 8px; }
+        .section-title { font-size: 12px; font-weight: bold; text-transform: uppercase; color: #6b7280; margin-bottom: 12px; }
+        .client-name { font-weight: bold; font-size: 18px; color: #111827; margin-bottom: 4px; }
+        .client-company { font-size: 14px; color: #374151; font-weight: 500; margin-bottom: 4px; }
+        .client-details { font-size: 14px; color: #6b7280; margin-bottom: 4px; }
+        .detail-row { display: flex; justify-content: space-between; margin-bottom: 8px; }
+        .detail-label { font-size: 14px; color: #6b7280; }
+        .detail-value { font-size: 14px; font-weight: 500; color: #111827; }
+        .status-badge { font-size: 14px; font-weight: bold; text-transform: uppercase; padding: 4px 8px; border-radius: 4px; }
+        .status-paid { background: #dcfce7; color: #166534; }
+        .status-overdue { background: #fee2e2; color: #dc2626; }
+        .status-sent { background: #dbeafe; color: #1e40af; }
+        .project-box { background: #eff6ff; border-left: 4px solid #2563eb; padding: 24px; margin-bottom: 32px; border-radius: 0 8px 8px 0; }
+        .project-title { font-size: 12px; font-weight: bold; text-transform: uppercase; color: #1e40af; margin-bottom: 8px; }
+        .project-name { font-weight: bold; font-size: 18px; color: #111827; margin-bottom: 8px; }
+        .project-desc { font-size: 14px; color: #374151; margin-bottom: 8px; }
+        .project-duration { font-size: 12px; color: #6b7280; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 32px; }
+        th { background: #111827; color: white; padding: 16px 24px; text-align: left; font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.05em; }
+        th:nth-child(2) { text-align: center; width: 80px; }
+        th:nth-child(3), th:nth-child(4) { text-align: right; width: 128px; }
+        td { padding: 16px 24px; border-bottom: 1px solid #e5e7eb; }
+        td:nth-child(2) { text-align: center; }
+        td:nth-child(3), td:nth-child(4) { text-align: right; }
+        tr:nth-child(even) { background: #f9fafb; }
+        .service-type { font-size: 12px; color: #6b7280; background: #e5e7eb; padding: 2px 8px; border-radius: 4px; display: inline-block; }
+        .summary { display: flex; justify-content: flex-end; margin-bottom: 32px; }
+        .summary-box { width: 100%; max-width: 33%; background: #111827; color: white; padding: 24px; border-radius: 8px; }
+        .summary-title { font-size: 18px; font-weight: bold; margin-bottom: 16px; }
+        .summary-row { display: flex; justify-content: space-between; margin-bottom: 12px; padding-bottom: 8px; }
+        .summary-row:not(:last-child) { border-bottom: 1px solid #374151; }
+        .summary-total { font-size: 20px; font-weight: bold; }
+        .summary-total .amount { color: #f87171; }
+        .footer { border-top: 2px solid #e5e7eb; padding-top: 24px; margin-top: 32px; display: flex; justify-content: space-between; align-items: center; }
+        .footer-left { font-size: 14px; color: #6b7280; }
+        .footer-left p:first-child { font-weight: 600; margin-bottom: 4px; }
+        .footer-right { text-align: right; font-size: 14px; color: #6b7280; }
+        .footer-right p:first-child { font-weight: 600; }
+        .payment-info { background: #fefce8; border-left: 4px solid #facc15; padding: 24px; margin-top: 32px; border-radius: 0 8px 8px 0; }
+        .payment-title { font-size: 14px; font-weight: bold; color: #a16207; margin-bottom: 8px; }
+        .payment-details { font-size: 14px; color: #374151; }
+        .payment-details p { margin-bottom: 4px; }
+        @media print { body { padding: 16px; } }
+      </style></head><body>
+      <div class="invoice-container">
+        <div class="header">
+          <div class="logo-section">
+            <div class="logo">
+              <div class="logo-box"><span class="logo-text">NEXARA</span></div>
+              <div class="company-info">
+                <h2>NEXARA Agency</h2>
+                <p>Strategic Digital Agency</p>
+              </div>
+            </div>
+            <div class="invoice-badge">
+              <div class="label">Invoice</div>
+              <div class="number">${invoice.invoiceNumber}</div>
+            </div>
+          </div>
+          <div class="contact-info">
+            <div>
+              <p>Address</p>
+              <p>Dhaka, Bangladesh</p>
+            </div>
+            <div>
+              <p>Contact</p>
+              <p>+8801234567890</p>
+              <p>info@nexara.com</p>
+            </div>
+            <div>
+              <p>Website</p>
+              <p>www.nexara.com</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="sections">
+          <div class="section-box">
+            <div class="section-title">Bill To</div>
+            <div class="client-name">${invoice.clientInfo.name}</div>
+            <div class="client-company">${invoice.clientInfo.company}</div>
+            <div class="client-details">${invoice.clientInfo.email}</div>
+            <div class="client-details">${invoice.clientInfo.phone}</div>
+            ${invoice.clientInfo.address ? `<div class="client-details">${invoice.clientInfo.address}</div>` : ''}
+            ${invoice.clientInfo.taxId ? `<div class="client-details">Tax ID: ${invoice.clientInfo.taxId}</div>` : ''}
+          </div>
+          
+          <div class="section-box">
+            <div class="section-title">Invoice Details</div>
+            <div class="detail-row">
+              <span class="detail-label">Issue Date:</span>
+              <span class="detail-value">${new Date(invoice.issueDate).toLocaleDateString()}</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Due Date:</span>
+              <span class="detail-value">${new Date(invoice.dueDate).toLocaleDateString()}</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Status:</span>
+              <span class="status-badge status-${invoice.status}">${invoice.status}</span>
+            </div>
+            ${invoice.paidDate ? `
+            <div class="detail-row">
+              <span class="detail-label">Paid Date:</span>
+              <span class="detail-value">${new Date(invoice.paidDate).toLocaleDateString()}</span>
+            </div>` : ''}
+          </div>
+        </div>
+
+        ${invoice.projectInfo ? `
+        <div class="project-box">
+          <div class="project-title">Project Details</div>
+          <div class="project-name">${invoice.projectInfo.name}</div>
+          <div class="project-desc">${invoice.projectInfo.description}</div>
+          <div class="project-duration">
+            Duration: ${new Date(invoice.projectInfo.startDate).toLocaleDateString()} - 
+            ${invoice.projectInfo.endDate ? new Date(invoice.projectInfo.endDate).toLocaleDateString() : 'Ongoing'}
+          </div>
+        </div>` : ''}
+
+        <table>
+          <thead>
+            <tr>
+              <th>Description</th>
+              <th>Qty</th>
+              <th>Unit Price</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${invoice.items.map((item, index) => `
+              <tr>
+                <td>
+                  <div style="font-weight: 600; color: #111827; margin-bottom: 4px;">${item.description}</div>
+                  <span class="service-type">${item.serviceType}</span>
+                  ${item.taxRate ? `<div style="font-size: 12px; color: #6b7280; margin-top: 4px;">Tax Rate: ${item.taxRate}%</div>` : ''}
+                </td>
+                <td>${item.quantity}</td>
+                <td>${invoice.currency} ${item.unitPrice.toLocaleString()}</td>
+                <td style="font-weight: 600;">${invoice.currency} ${item.total.toLocaleString()}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+
+        <div class="summary">
+          <div class="summary-box">
+            <div class="summary-title">Payment Summary</div>
+            <div class="summary-row">
+              <span>Subtotal:</span>
+              <span>${invoice.currency} ${invoice.subtotal.toLocaleString()}</span>
+            </div>
+            <div class="summary-row">
+              <span>Tax:</span>
+              <span>${invoice.currency} ${invoice.taxAmount.toLocaleString()}</span>
+            </div>
+            <div class="summary-row summary-total">
+              <span>Total Amount:</span>
+              <span class="amount">${invoice.currency} ${invoice.totalAmount.toLocaleString()}</span>
+            </div>
+          </div>
+        </div>
+
+        ${(invoice.terms || invoice.notes) ? `
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 32px;">
+          ${invoice.terms ? `
+          <div class="section-box">
+            <div class="section-title">Payment Terms</div>
+            <div style="font-size: 14px; color: #374151; line-height: 1.5;">${invoice.terms}</div>
+          </div>` : ''}
+          ${invoice.notes ? `
+          <div class="section-box">
+            <div class="section-title">Notes</div>
+            <div style="font-size: 14px; color: #374151; line-height: 1.5;">${invoice.notes}</div>
+          </div>` : ''}
+        </div>` : ''}
+
+        <div class="footer">
+          <div class="footer-left">
+            <p>Thank you for your business!</p>
+            <p>For any questions regarding this invoice, please contact us at info@nexara.com</p>
+          </div>
+          <div class="footer-right">
+            <p>NEXARA Agency</p>
+            <p>Dhaka, Bangladesh</p>
+            <p>www.nexara.com</p>
+          </div>
+        </div>
+
+        ${invoice.status !== 'paid' ? `
+        <div class="payment-info">
+          <div class="payment-title">Payment Information</div>
+          <div class="payment-details">
+            <p><strong>Bank:</strong> Bank Name Here</p>
+            <p><strong>Account Name:</strong> NEXARA Agency</p>
+            <p><strong>Account Number:</strong> XXXX-XXXX-XXXX</p>
+            <p><strong>Routing Number:</strong> XXXXXX</p>
+          </div>
+        </div>` : ''}
+      </div>
+      </body></html>
+    `);
+    printWindow.document.close();
+    printWindow.focus();
+    setTimeout(() => { printWindow.print(); printWindow.close(); }, 250);
   };
 
   const handleViewInvoice = (invoice: Invoice) => {
@@ -191,6 +417,7 @@ const ClientInvoicePortal: React.FC = () => {
 
   if (selectedInvoice) {
     return (
+      <Layout>
       <div className="min-h-screen bg-dark p-6">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
@@ -215,7 +442,7 @@ const ClientInvoicePortal: React.FC = () => {
             <div className="flex gap-2">
               <Button
                 variant="outline"
-                onClick={() => handleDownloadInvoice(selectedInvoice.id)}
+                onClick={() => handleDownloadInvoice(selectedInvoice)}
                 className="flex items-center gap-2"
               >
                 <Download size={18} />
@@ -269,7 +496,7 @@ const ClientInvoicePortal: React.FC = () => {
             </div>
 
             {/* Project Info */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-8">
               <div>
                 <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
                   <Building size={20} />
@@ -388,10 +615,12 @@ const ClientInvoicePortal: React.FC = () => {
           </motion.div>
         </div>
       </div>
+      </Layout>
     );
   }
 
   return (
+    <Layout>
     <div className="min-h-screen bg-dark p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
@@ -400,9 +629,16 @@ const ClientInvoicePortal: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           className="flex justify-between items-center mb-8"
         >
-          <div>
-            <h1 className="text-4xl font-black text-white mb-2">My Invoices</h1>
-            <p className="text-gray-400">View and pay your invoices online</p>
+          <div className="flex items-center gap-4">
+            <Link to="/client/dashboard">
+              <Button variant="outline" className="flex items-center gap-2">
+                ← Back to Dashboard
+              </Button>
+            </Link>
+            <div>
+              <h1 className="text-4xl font-black text-white mb-2">My Invoices</h1>
+              <p className="text-gray-400">View and pay your invoices online</p>
+            </div>
           </div>
           <div className="flex items-center gap-4">
             <div className="relative">
@@ -430,7 +666,7 @@ const ClientInvoicePortal: React.FC = () => {
         </motion.div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
           {[
             { 
               label: 'Total Invoices', 
@@ -476,7 +712,7 @@ const ClientInvoicePortal: React.FC = () => {
         </div>
 
         {/* Invoices Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {filteredInvoices.map((invoice) => (
             <motion.div
               key={invoice.id}
@@ -525,7 +761,7 @@ const ClientInvoicePortal: React.FC = () => {
                   size="sm"
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleDownloadInvoice(invoice.id);
+                    handleDownloadInvoice(invoice);
                   }}
                   className="flex-1"
                 >
@@ -581,15 +817,15 @@ const ClientInvoicePortal: React.FC = () => {
               <div className="bg-dark border border-white/10 rounded-2xl p-6 mb-6">
                 <div className="flex justify-between items-center mb-4">
                   <span className="text-gray-400">Invoice:</span>
-                  <span className="text-white font-medium">{selectedInvoice?.invoiceNumber || ''}</span>
+                  <span className="text-white font-medium">{selectedInvoice.invoiceNumber}</span>
                 </div>
                 <div className="flex justify-between items-center mb-4">
                   <span className="text-gray-400">Amount:</span>
-                  <span className="text-2xl font-black text-primary">BDT {selectedInvoice?.totalAmount?.toLocaleString() || 0}</span>
+                  <span className="text-2xl font-black text-primary">BDT {selectedInvoice.totalAmount.toLocaleString()}</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-gray-400">Due Date:</span>
-                  <span className="text-white">{selectedInvoice?.dueDate ? new Date(selectedInvoice.dueDate).toLocaleDateString() : ''}</span>
+                  <span className="text-white">{new Date(selectedInvoice.dueDate).toLocaleDateString()}</span>
                 </div>
               </div>
 
@@ -642,7 +878,7 @@ const ClientInvoicePortal: React.FC = () => {
                   onClick={processPayment}
                   className="flex-1"
                 >
-                  Pay BDT {selectedInvoice?.totalAmount?.toLocaleString() || 0}
+                  Pay BDT {selectedInvoice.totalAmount.toLocaleString()}
                 </Button>
               </div>
             </motion.div>
@@ -650,6 +886,7 @@ const ClientInvoicePortal: React.FC = () => {
         )}
       </div>
     </div>
+    </Layout>
   );
 };
 

@@ -11,7 +11,7 @@ const Community = () => {
 
       <section className="py-24 bg-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-8">
             {[
               { title: 'Industry Insights', icon: Globe, desc: 'Stay updated with the latest trends in digital marketing and tech.' },
               { title: 'Networking Events', icon: Users, desc: 'Join our exclusive webinars and local meetups.' },

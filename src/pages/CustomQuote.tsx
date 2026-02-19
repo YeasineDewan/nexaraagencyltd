@@ -231,7 +231,7 @@ const CustomQuote = () => {
               <h3 className="text-3xl font-black text-white mb-2">Tell us about yourself</h3>
               <p className="text-gray-400 mb-8">Let's start with the basics so we can understand your needs better.</p>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -373,7 +373,7 @@ const CustomQuote = () => {
               <h3 className="text-3xl font-black text-white mb-2">What services do you need?</h3>
               <p className="text-gray-400 mb-8">Select all the services that match your project requirements.</p>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 sm:mb-12">
                 {serviceOptions.map((service, index) => (
                   <motion.div
                     key={service.id}
@@ -416,7 +416,7 @@ const CustomQuote = () => {
               <h4 className="text-2xl font-bold text-white mb-2">Project Details</h4>
               <p className="text-gray-400 mb-8">Help us understand your project context better.</p>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -489,7 +489,7 @@ const CustomQuote = () => {
               <h3 className="text-3xl font-black text-white mb-2">Choose your package</h3>
               <p className="text-gray-400 mb-8">Select the package that best fits your project scope and budget.</p>
               
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-12">
                 {servicePackages.map((pkg, index) => (
                   <motion.div
                     key={pkg.id}
@@ -617,7 +617,7 @@ const CustomQuote = () => {
                 <h4 className="text-xl font-bold text-white mb-4">Custom Budget Range</h4>
                 <p className="text-gray-400 mb-6">Select your preferred budget range for better recommendations.</p>
                 
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
                   {['<50k', '50k-150k', '150k-500k', '500k+'].map((range, index) => (
                     <motion.button
                       key={range}

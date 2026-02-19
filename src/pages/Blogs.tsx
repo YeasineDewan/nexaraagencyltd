@@ -13,22 +13,22 @@ const Blogs = () => {
 
   return (
     <Layout>
-      <section className="relative py-32 bg-dark text-center border-b border-white/5">
-        <h1 className="text-6xl md:text-8xl font-black text-white mb-6">Blog</h1>
+      <section className="relative py-20 sm:py-32 bg-dark text-center border-b border-white/5">
+        <h1 className="text-5xl sm:text-6xl md:text-8xl font-black text-white mb-4 sm:mb-6">Blog</h1>
         <p className="text-gray-500 text-sm uppercase tracking-widest">Home | Blog</p>
       </section>
 
       <section className="py-32 bg-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-4xl font-bold text-white mb-16 text-center">Read Blogs in <span className="text-primary">English</span></h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 mb-12 sm:mb-20">
                 {blogsEn.map((blog, i) => (
                     <motion.div key={i} whileHover={{ y: -10 }} className="bg-dark-lighter rounded-3xl overflow-hidden border border-white/5 group">
                         <div className="aspect-video relative overflow-hidden">
                             <img src={blog.image} alt={blog.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                         </div>
-                        <div className="p-8">
-                            <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-primary transition-colors">{blog.title}</h3>
+                        <div className="p-6 sm:p-8">
+                            <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4 group-hover:text-primary transition-colors">{blog.title}</h3>
                             <div className="flex items-center gap-4 text-xs text-gray-500 font-bold uppercase tracking-widest">
                                 <span>{blog.date}</span>
                                 <span>•</span>
@@ -43,13 +43,13 @@ const Blogs = () => {
             </div>
 
             <h2 className="text-4xl font-bold text-white mb-16 text-center">বাংলায় <span className="text-primary">ব্লগ</span> পড়ুন</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
                  {[1,2,3,4].map((i) => (
                     <motion.div key={i} whileHover={{ y: -10 }} className="bg-dark-lighter rounded-3xl overflow-hidden border border-white/5 group">
                         <div className="aspect-video relative overflow-hidden">
                             <img src={`https://images.unsplash.com/photo-15${i}1434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80`} alt="Bangla Blog" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                         </div>
-                        <div className="p-8">
+                        <div className="p-6 sm:p-8">
                             <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-primary transition-colors">ডিজিটাল মার্কেটিং কেন প্রয়োজন?</h3>
                             <div className="flex items-center gap-4 text-xs text-gray-500 font-bold uppercase tracking-widest">
                                 <span>সেপ্টেম্বর ২৭, ২০২৫</span>
