@@ -1,7 +1,5 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
-import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin, ArrowRight } from 'lucide-react';
-import { Button } from './ui/Button';
+import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -12,9 +10,13 @@ const Footer = () => {
           <div>
              <Link to="/" className="flex items-center gap-3 mb-8 group">
               <img 
-                src="/assets/logo.webp" 
+                src="/assets/logo.png" 
                 alt="Nexara Agency Ltd" 
                 className="h-14 w-auto transition-transform duration-300 group-hover:scale-105"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.src = '/logo.png';
+                }}
               />
               <span className="font-extrabold text-2xl text-white tracking-tight">NEXARA <span className="text-primary font-bold text-lg">Agency Ltd.</span></span>
             </Link>

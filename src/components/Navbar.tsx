@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { Menu, X, ChevronDown, ChevronRight, User, LogOut, LayoutDashboard, ArrowRight, TrendingUp, Code, Palette, Video } from 'lucide-react';
+import { Menu, X, ChevronDown, ChevronRight, User, LogOut, ArrowRight, TrendingUp, Code, Palette, Video } from 'lucide-react';
 import { Button } from './ui/Button';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -148,18 +148,24 @@ const Navbar = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <nav className="bg-[#0a0a0a] sticky top-0 z-[100] border-b-2 border-primary/20 transition-all duration-300 shadow-[0_4px_30px_rgba(0,0,0,0.5)] rounded-full mx-4 mt-2">
+    <nav className="bg-[#0a0a0a] sticky top-0 z-[100] border-b-2 border-primary/20 transition-all duration-300 shadow-[0_4px_30px_rgba(0,0,0,0.5)] lg:rounded-full lg:mx-4 lg:mt-2">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20 items-center">
           {/* Logo */}
           <div className="flex items-center">
-            <Link to="/" className="flex-shrink-0 flex items-center gap-3 group">
+            <Link to="/" className="flex-shrink-0 flex items-center gap-2 sm:gap-3 group">
               <img 
-                src="/assets/logo.webp" 
+                src="/assets/logo.png" 
                 alt="Nexara Agency Ltd" 
-                className="h-14 w-auto transition-transform duration-300 group-hover:scale-105"
+                className="h-10 sm:h-12 lg:h-14 w-auto transition-transform duration-300 group-hover:scale-105"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.src = '/logo.png';
+                }}
               />
-              <span className="font-black text-2xl text-primary tracking-tighter uppercase hidden sm:flex items-center gap-2">NEXARA <span className="text-white text-lg font-bold">Agency Ltd.</span></span>
+              <span className="font-black text-xl sm:text-2xl text-primary tracking-tighter uppercase hidden sm:flex items-center gap-1 sm:gap-2">
+                NEXARA <span className="text-white text-sm sm:text-lg font-bold hidden md:inline">Agency Ltd.</span>
+              </span>
             </Link>
           </div>
           
@@ -195,16 +201,16 @@ const Navbar = () => {
                           stiffness: 300,
                           duration: 0.3
                         }}
-                        className="absolute left-1/2 transform -translate-x-1/2 mt-4 w-[90vw] max-w-4xl lg:w-[800px] xl:w-[900px]"
+                        className="fixed lg:absolute left-1/2 transform -translate-x-1/2 mt-4 w-[95vw] sm:w-[90vw] md:w-[85vw] max-w-4xl lg:w-[750px] xl:w-[850px] 2xl:w-[900px] lg:top-full lg:mt-4 top-20"
                         style={{ zIndex: 1000 }}
                         onMouseEnter={handleDropdownMouseEnter}
                         onMouseLeave={handleDropdownMouseLeave}
                       >
-                        <div className="bg-dark-lighter/95 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl overflow-hidden">
+                        <div className="bg-dark-lighter/95 backdrop-blur-xl border border-white/10 rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden max-h-[70vh] sm:max-h-[75vh] lg:max-h-[80vh] overflow-y-auto overscroll-contain">
                           <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-transparent h-1"></div>
-                          <div className="flex flex-col lg:flex-row">
+                          <div className="flex flex-col lg:flex-row min-w-0 overflow-hidden">
                             {/* Left Column - Main Categories */}
-                            <div className="w-full lg:w-2/5 p-2 lg:border-r border-white/5">
+                            <div className="w-full lg:w-2/5 p-2 sm:p-3 lg:border-r border-white/5 flex-shrink-0">
                               <div className="space-y-1">
                                 {Object.entries(servicesMenu).map(([category, data], index) => {
                                   const Icon = data.icon;
@@ -261,7 +267,7 @@ const Navbar = () => {
                             </div>
 
                             {/* Right Column - Sub Categories */}
-                            <div className="flex-1 p-3 lg:p-6">
+                            <div className="flex-1 p-2 sm:p-4 lg:p-6 min-w-0">
                               {hoveredService && servicesMenu[hoveredService] && (
                                 <motion.div
                                   initial={{ opacity: 0, x: 20 }}
@@ -281,7 +287,7 @@ const Navbar = () => {
                                     </p>
                                   </div>
                                   
-                                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-1 lg:gap-2">
+                                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 sm:gap-2 lg:gap-2">
                                     {servicesMenu[hoveredService].items.map((item: ServiceItem, index) => (
                                       <motion.div
                                         key={item.path}
@@ -324,7 +330,7 @@ const Navbar = () => {
                                     transition={{ delay: 0.3 }}
                                     className="mt-4 lg:mt-6 p-3 lg:p-4 bg-gradient-to-r from-primary/10 to-primary/5 rounded-xl lg:rounded-2xl border border-primary/20"
                                   >
-                                    <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
+                                    <div className="flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-3">
                                       <div className="text-center sm:text-left">
                                         <h4 className="font-bold text-white text-xs lg:text-sm mb-1">Need a custom solution?</h4>
                                         <p className="text-xs text-gray-400 hidden sm:block">Let's discuss your specific requirements</p>
@@ -474,9 +480,13 @@ const Navbar = () => {
           <div className="flex justify-between items-center mb-12">
              <Link to="/" className="flex items-center gap-3" onClick={() => setIsOpen(false)}>
                 <img 
-                  src="/assets/logo.webp" 
+                  src="/assets/logo.png" 
                   alt="Nexara Agency Ltd" 
                   className="h-12 w-auto transition-transform duration-300"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.src = '/logo.png';
+                  }}
                 />
                 <span className="font-extrabold text-2xl text-white tracking-tight hidden sm:flex items-center gap-2">NEXARA <span className="text-primary font-bold text-lg">Agency Ltd.</span></span>
              </Link>
