@@ -223,6 +223,104 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Hero Image with Stats */}
+      <section className="relative py-20 bg-dark">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              transition={{ duration: 1 }}
+              className="mt-20 lg:mt-0 relative"
+            >
+              <motion.div 
+                className="relative z-10 rounded-[3.5rem] overflow-hidden border-2 border-primary/20 p-2 bg-dark-lighter shadow-2xl group"
+                whileHover={{ scale: 1.02, rotate: 1 }}
+                transition={{ duration: 0.5 }}
+              >
+                 <div className="rounded-[3rem] overflow-hidden aspect-[4/5] relative">
+                    <motion.img 
+                        src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" 
+                        alt="NEXARA Excellence" 
+                        className="w-full h-full object-cover"
+                        initial={{ scale: 1.1 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 0.8 }}
+                        whileHover={{ scale: 1.1 }}
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                        }}
+                    />
+                    <motion.div 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.5, delay: 0.3 }}
+                        className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"
+                    />
+                    <motion.div 
+                        className="absolute bottom-10 left-10"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.5 }}
+                    >
+                        <div className="flex items-center gap-4 text-white mb-2">
+                            <motion.div 
+                                className="w-12 h-[2px] bg-primary"
+                                initial={{ scaleX: 0 }}
+                                animate={{ scaleX: 1 }}
+                                transition={{ duration: 0.6, delay: 1 }}
+                            />
+                            <motion.span 
+                                className="text-xs font-black uppercase tracking-widest"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ duration: 0.6, delay: 1.2 }}
+                            >
+                                Agency Insight
+                            </motion.span>
+                        </div>
+                        <motion.h3 
+                            className="text-3xl font-bold text-white uppercase tracking-tighter"
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.8 }}
+                        >
+                            Where Creativity <br/>Meets Results
+                        </motion.h3>
+                    </motion.div>
+                 </div>
+              </motion.div>
+              {/* Animated Stats Cards */}
+              <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.2 }}
+                className="absolute -bottom-10 -right-10 bg-primary p-10 rounded-[2.5rem] shadow-2xl z-20 text-white border-4 border-dark group cursor-default"
+                whileHover={{ scale: 1.05 }}
+              >
+                <motion.div 
+                  className="text-5xl font-black mb-1"
+                  initial={{ scale: 0.5 }}
+                  animate={{ scale: 1 }}
+                  transition={{ duration: 0.6, delay: 1.5 }}
+                >
+                  98%
+                </motion.div>
+                <motion.div 
+                  className="text-[10px] font-bold uppercase tracking-widest opacity-80"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.6, delay: 1.8 }}
+                >
+                  Client Retention
+                </motion.div>
+              </motion.div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Clients Marquee */}
       <section className="py-20 bg-dark-lighter border-y border-white/5 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 mb-10">
@@ -551,6 +649,65 @@ const Home = () => {
                 </Button>
               </Link>
             </motion.div>
+          </div>
+          
+          {/* Project Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+            {[
+              { title: 'Menova Platform', client: 'Menova Corp', image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80' },
+              { title: 'EcoTrack App', client: 'Green Future', image: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80' },
+              { title: 'Global Branding', client: 'Global Matrix', image: 'https://images.unsplash.com/photo-1558655146-d09347e92766?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80' },
+              { title: 'TechFlow Website', client: 'TechFlow Inc', image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80' },
+              { title: 'Social Campaign', client: 'EcoCraft', image: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80' },
+              { title: 'Brand Identity', client: 'Lucia Belia', image: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80' }
+            ].map((project, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1, duration: 0.6 }}
+                whileHover={{ y: -10, scale: 1.02 }}
+                className="group bg-dark-lighter rounded-[2rem] overflow-hidden border border-white/5 hover:border-primary/30 transition-all duration-500"
+              >
+                <div className="aspect-[4/3] overflow-hidden relative">
+                  <motion.img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover"
+                    initial={{ scale: 1.1 }}
+                    animate={{ scale: 1 }}
+                    transition={{ duration: 0.8, delay: i * 0.1 }}
+                    whileHover={{ scale: 1.1 }}
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = 'none';
+                    }}
+                  />
+                  <motion.div 
+                    className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"
+                    initial={{ opacity: 0 }}
+                    whileHover={{ opacity: 1 }}
+                  />
+                  <div className="absolute bottom-6 left-6 right-6">
+                    <motion.h4 
+                      className="text-xl font-bold text-white mb-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                      initial={{ opacity: 0 }}
+                      whileHover={{ opacity: 1 }}
+                    >
+                      {project.title}
+                    </motion.h4>
+                    <motion.p 
+                      className="text-sm text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity"
+                      initial={{ opacity: 0 }}
+                      whileHover={{ opacity: 1 }}
+                    >
+                      {project.client}
+                    </motion.p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
