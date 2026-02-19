@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin } from 'lucide-react';
+import ImageWithFallback from './ui/ImageWithFallback';
 
 const Footer = () => {
   return (
@@ -9,14 +10,12 @@ const Footer = () => {
           {/* Company Info */}
           <div>
              <Link to="/" className="flex items-center gap-3 mb-8 group">
-              <img 
+              <ImageWithFallback 
                 src="/assets/logo.png" 
                 alt="Nexara Agency Ltd" 
                 className="h-14 w-auto transition-transform duration-300 group-hover:scale-105"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.src = '/logo.png';
-                }}
+                fallbackSrc="/logo.png"
+                fallbackText="NEXARA"
               />
               <span className="font-extrabold text-2xl text-white tracking-tight">NEXARA <span className="text-primary font-bold text-lg">Agency Ltd.</span></span>
             </Link>

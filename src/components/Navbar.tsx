@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { Menu, X, ChevronDown, ChevronRight, User, LogOut, ArrowRight, TrendingUp, Code, Palette, Video } from 'lucide-react';
 import { Button } from './ui/Button';
 import { motion, AnimatePresence } from 'framer-motion';
+import ImageWithFallback from './ui/ImageWithFallback';
 
 interface ServiceItem {
   name: string;
@@ -154,14 +155,12 @@ const Navbar = () => {
           {/* Logo */}
           <div className="flex items-center">
             <Link to="/" className="flex-shrink-0 flex items-center gap-2 sm:gap-3 group">
-              <img 
+              <ImageWithFallback 
                 src="/assets/logo.png" 
                 alt="Nexara Agency Ltd" 
                 className="h-10 sm:h-12 lg:h-14 w-auto transition-transform duration-300 group-hover:scale-105"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.src = '/logo.png';
-                }}
+                fallbackSrc="/logo.png"
+                fallbackText="NEXARA"
               />
               <span className="font-black text-xl sm:text-2xl text-primary tracking-tighter uppercase hidden sm:flex items-center gap-1 sm:gap-2">
                 NEXARA <span className="text-white text-sm sm:text-lg font-bold hidden md:inline">Agency Ltd.</span>
@@ -479,14 +478,12 @@ const Navbar = () => {
         >
           <div className="flex justify-between items-center mb-12">
              <Link to="/" className="flex items-center gap-3" onClick={() => setIsOpen(false)}>
-                <img 
+                <ImageWithFallback 
                   src="/assets/logo.png" 
                   alt="Nexara Agency Ltd" 
                   className="h-12 w-auto transition-transform duration-300"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.src = '/logo.png';
-                  }}
+                  fallbackSrc="/logo.png"
+                  fallbackText="NEXARA"
                 />
                 <span className="font-extrabold text-2xl text-white tracking-tight hidden sm:flex items-center gap-2">NEXARA <span className="text-primary font-bold text-lg">Agency Ltd.</span></span>
              </Link>

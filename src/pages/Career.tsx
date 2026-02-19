@@ -1,7 +1,7 @@
-import React from 'react';
 import Layout from '../components/Layout';
 import { Button } from '../components/ui/Button';
 import { motion } from 'framer-motion';
+import ImageWithFallback from '../components/ui/ImageWithFallback';
 
 const Career = () => {
   const jobs = [
@@ -34,7 +34,7 @@ const Career = () => {
                 {jobs.map((job, i) => (
                     <motion.div key={i} whileHover={{ y: -10 }} className="bg-dark-lighter rounded-[2rem] overflow-hidden border border-white/5 group">
                         <div className="aspect-[4/3] relative overflow-hidden">
-                            <img src={job.image} alt={job.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                            <ImageWithFallback src={job.image} alt={job.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" fallbackText={job.title} />
                             <div className="absolute top-4 right-4">
                                 <span className={`px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest ${job.status === 'Open' ? 'bg-emerald-500 text-white' : 'bg-red-500 text-white'}`}>
                                     {job.status}
